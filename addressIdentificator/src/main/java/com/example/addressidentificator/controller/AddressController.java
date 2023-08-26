@@ -20,14 +20,16 @@ public class AddressController {
     }
 
     /**
-     * TODO One query with 10 addresses back in Json
-     * С клиента приходит запрос, передается на ИИ, возвращается 10 адресов на сервер, потом обратно на клиент
+     *
+     * @param query Запрос, пришедший с клиентской части.
+     * @return Адрес из запроса, корректный адрес и id строения
      */
     @PostMapping("/getAddress")
     public ResponseEntity<Address> getAddress(@RequestPart("address") String query) {
         log.info("Request to get right address");
         Address address = addressService.getAddress(query);
-        if (address.getTargetBuildingId() == null) {
+        if (address.getTargetAddress().length == 0) {
+            log.warn("No suitable addresses");
             return new ResponseEntity<>(address, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(address, HttpStatus.OK);

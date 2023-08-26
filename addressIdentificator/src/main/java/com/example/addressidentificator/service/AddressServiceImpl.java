@@ -16,16 +16,28 @@ public class AddressServiceImpl implements AddressService {
          * TODO
             * Здесь должна быть логика подключения к нейросети или тип того
             * Пока заглушка
+            * Ожидаемое значение является массивом String, содержащих fullAddress и массив Long содержащий id строения.
          */
 
-        TargetAddress targetAddress = TargetAddress.builder()
-                .targetAddresses(new String[]{"address one", "address two"})
-                .build();
+
+        //TODO Поменять на возвращаемое значение
+        int countOfAddressesFromAI = 0;
+        Long[] buildingIdArray = new Long[0]/*{1314l, 2413l}*/;
+        String[] fullAddressFromAI = new String[0]/*{"Аптекарский д.15", "Ленина д.2"}*/;
+
+        log.info(countOfAddressesFromAI + " addresses found");
+
+        TargetAddress[] targetAddress = new TargetAddress[countOfAddressesFromAI];
+        for (int i = 0; i < countOfAddressesFromAI; i++) {
+            targetAddress[i] = TargetAddress.builder()
+                    .id(buildingIdArray[i])
+                    .fullAddress(fullAddressFromAI[i])
+                    .build();
+        }
 
         return Address.builder()
                 .queryAddress(query)
-                .targetBuildingId(1L)                //TODO Получать из ИИ
-                .targetAddressArray(targetAddress)   //TODO Получать из ИИ
+                .targetAddress(targetAddress)
                 .build();
     }
 

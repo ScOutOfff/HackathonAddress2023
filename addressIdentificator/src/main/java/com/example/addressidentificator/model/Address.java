@@ -13,20 +13,18 @@ public class Address {
 
     private String queryAddress;
 
-    private Long targetBuildingId;
-
-    private TargetAddress targetAddressArray;
+    private TargetAddress[] targetAddress;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return Objects.equals(targetBuildingId, address.targetBuildingId);
+        return Objects.equals(queryAddress, address.queryAddress);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(targetBuildingId);
+        return Objects.hash(queryAddress);
     }
 }
