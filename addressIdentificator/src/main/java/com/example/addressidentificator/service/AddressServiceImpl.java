@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 @Log4j2
 public class AddressServiceImpl implements AddressService {
     @Override
-    public Address getAddress() {
+    public Address getAddress(String query) {
         log.error("AddressService.getAddress return null");
         /**
          * Здесь должна быть логика подключения к нейросети или тип того
          * Пока заглушка
          */
-        return null;
+        return Address.builder()
+                .address(query)
+                .targetBuildingId(1L)       //TODO Получать из ИИ
+                .targetAddress("address")   //TODO Получать из ИИ
+                .build();
     }
 }

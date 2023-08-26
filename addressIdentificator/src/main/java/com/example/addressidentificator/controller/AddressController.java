@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/") //TODO
+@RequestMapping("api/address")
 @Log4j2
 public class AddressController {
     private final AddressService addressService;
@@ -25,13 +25,13 @@ public class AddressController {
      * TODO One query with 10 addresses back in Json
      * С клиента приходит запрос, передается на ИИ, возвращается 10 адресов на сервер, потом обратно на клиент
      */
-    @GetMapping("") //TODO
-    public ResponseEntity<Address> getAddress(){
+    @GetMapping("/getAddress")
+    public ResponseEntity<Address> getAddress(String query) {
         log.info("Request to get right address");
-        if (addressService.getAddress() == null) {
-            return new ResponseEntity<>(addressService.getAddress(), HttpStatus.NOT_FOUND);
-            // По хорошему не надо возвращать null
+        Address address = addressService.getAddress(query);
+        if (address.getTargetBuildingId() == null) {
+            return new ResponseEntity<>(address, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(addressService.getAddress(), HttpStatus.OK);
+        return new ResponseEntity<>(address, HttpStatus.OK);
     }
 }
