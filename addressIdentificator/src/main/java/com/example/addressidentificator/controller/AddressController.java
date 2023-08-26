@@ -6,9 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/address")
@@ -25,8 +23,8 @@ public class AddressController {
      * TODO One query with 10 addresses back in Json
      * С клиента приходит запрос, передается на ИИ, возвращается 10 адресов на сервер, потом обратно на клиент
      */
-    @GetMapping("/getAddress")
-    public ResponseEntity<Address> getAddress(String query) {
+    @PostMapping("/getAddress")
+    public ResponseEntity<Address> getAddress(@RequestPart("address") String query) {
         log.info("Request to get right address");
         Address address = addressService.getAddress(query);
         if (address.getTargetBuildingId() == null) {

@@ -1,27 +1,26 @@
 package com.example.addressidentificator.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.Embedded;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Objects;
 
-@Entity
 @Getter
 @Setter
 @SuperBuilder
 public class Address {
 
-    @Id
     private Long targetBuildingId;
 
     private String address;
 
-    private String targetAddress;
+    @Embedded
+    private TargetAddress targetAddress;
 
-    public Address() {}
+    public Address() {
+    }
 
     @Override
     public boolean equals(Object o) {
