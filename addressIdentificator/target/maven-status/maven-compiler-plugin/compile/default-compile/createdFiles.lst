@@ -1,0 +1,10 @@
+com\example\addressidentificator\model\TargetAddress.class
+com\example\addressidentificator\controller\AddressController.class
+com\example\addressidentificator\service\AddressService.class
+com\example\addressidentificator\model\Address$AddressBuilder.class
+com\example\addressidentificator\service\AddressServiceImpl.class
+com\example\addressidentificator\AddressIdentificatorApplication.class
+com\example\addressidentificator\model\Address$AddressBuilderImpl.class
+com\example\addressidentificator\model\Address.class
+com\example\addressidentificator\model\TargetAddress$TargetAddressBuilder.class
+com\example\addressidentificator\model\TargetAddress$TargetAddressBuilderImpl.class

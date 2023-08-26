@@ -14,18 +14,19 @@ public class AddressServiceImpl implements AddressService {
         log.error("AddressService.getAddress return Address without correct target");
         /*
          * TODO
-         * Здесь должна быть логика подключения к нейросети или тип того
-         * Пока заглушка
+            * Здесь должна быть логика подключения к нейросети или тип того
+            * Пока заглушка
          */
 
         TargetAddress targetAddress = TargetAddress.builder()
-                .address(new String[]{"address one", "address two"})
+                .targetAddresses(new String[]{"address one", "address two"})
                 .build();
 
         return Address.builder()
-                .address(query)
-                .targetBuildingId(1L)           //TODO Получать из ИИ
-                .targetAddress(targetAddress)   //TODO Получать из ИИ
+                .queryAddress(query)
+                .targetBuildingId(1L)                //TODO Получать из ИИ
+                .targetAddressArray(targetAddress)   //TODO Получать из ИИ
                 .build();
     }
+
 }

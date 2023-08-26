@@ -1,6 +1,5 @@
 package com.example.addressidentificator.model;
 
-import jakarta.persistence.Embedded;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
@@ -12,15 +11,11 @@ import java.util.Objects;
 @SuperBuilder
 public class Address {
 
+    private String queryAddress;
+
     private Long targetBuildingId;
 
-    private String address;
-
-    @Embedded
-    private TargetAddress targetAddress;
-
-    public Address() {
-    }
+    private TargetAddress targetAddressArray;
 
     @Override
     public boolean equals(Object o) {
