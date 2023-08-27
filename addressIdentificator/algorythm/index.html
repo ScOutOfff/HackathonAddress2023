@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="keywords" content="Ремонт, ремонт смартфона, ремонт телефона, ремонт компьютера, ремонт ноутбука, ремонт холодильника, ремонт часов, ремонт телевизора">
+        <meta name="description" content="Ремонт бытовой и цифровой техники в Санкт-Петербурге">
+        <meta name="author" content="Петр Ласточкин, Peter Lastochkin, ItSystemGroup">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="CSS/style.css">
+        <title>Срочный ремонт любой техники в Санкт-Петербурге — выгодно!</title>
+    </head>
+    <body>
+        <!-- <div style="margin: 200px auto 10px auto; width: 200px;"><textarea id="textTo"></textarea></div>
+        <div style="margin: 10px auto; width: 200px;"><input type="button" onclick="parseAdress()" value="CLICK HERE"></div>
+        <div style="margin: 10px auto; width: 500px;" class="textHere"></div> -->
+        <div>
+            <input
+              type="text"
+              value=""
+              onkeyup="sortStreets()"
+              class="sendText"
+              id="address-input"
+              placeholder="Введите адрес"
+            />
+            <ul class="textHere" id="textHere"></ul>
+          </div>
+    </body>
+    <script src="JS/script.js"></script>
+    <script>
+        function parseAdress(){
+            let block = document.querySelector('#textTo').value;
+            let blockText = document.querySelectorAll('.textHere');
+
+            let textFormat = block.split('"');
+            let cicle = 0;
+
+            for (let i = 0; i < textFormat.length; i++){
+                cicle++;
+                if (cicle == 4){
+                    blockText[0].innerHTML += '\'' + textFormat[i] + '\', <br>';
+                    cicle = 0;
+                }
+            }
+        }
+
+        function sortStreets() {
+        let input = document.querySelectorAll(".sendText")[0];
+        let inputValue = input.value.toLowerCase();
+        let arrInp = inputValue.split(/(?=(?:..)*$)/);
+        let arrInpOne = inputValue.split(/(?=(?:.)*$)/);
+
+        let matchingAddresses = [];
+        let adressHereLast = [];
+        let adressHereLastTwo = [];
+        let countAdress = 0;
+
+        for (let i = 0; i < adress.length; i++) {
+            if (
+                adress[i].toLowerCase().indexOf(' ' + arrInp[0]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInp[1]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInp[2]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInp[3]) != -1
+            ) {
+                matchingAddresses.push(adress[i]);
+                countAdress++;
+            } else if (
+                adress[i].toLowerCase().indexOf(' ' + arrInpOne[0]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[1]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[2]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[3]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[4]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[5]) != -1
+            ) {
+                matchingAddresses.push(adress[i]);
+                //countAdress++;
+            } else if (
+                adress[i].toLowerCase().indexOf(' ' + arrInpOne[0]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[2]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[3]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[4]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[5]) != -1
+            ) {
+                matchingAddresses.push(adress[i]);
+                //countAdress++;
+            } else if (
+                adress[i].toLowerCase().indexOf(' ' + arrInpOne[0]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[1]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[3]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[4]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[5]) != -1
+            ) {
+                matchingAddresses.push(adress[i]);
+                //countAdress++;
+            } else if (
+                adress[i].toLowerCase().indexOf(' ' + arrInpOne[0]) != -1 ||
+                adress[i].toLowerCase().indexOf(' ' + arrInpOne[0]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[1]) != -1 ||
+                adress[i].toLowerCase().indexOf(' ' + arrInpOne[0]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInpOne[2]) != -1
+            ) {
+                matchingAddresses.push(adress[i]);
+                //countAdress++;
+            }
+
+            if (countAdress >= 21){
+                break;
+            }
+        }
+
+        for (let i = 0; i < matchingAddresses.length; i++){
+            if (matchingAddresses[i].toLowerCase().indexOf(inputValue) != -1){
+                adressHereLast.push(matchingAddresses[i]);
+            } else if (
+                adress[i].toLowerCase().indexOf(' ' + arrInp[0]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInp[1]) != -1
+            ) {
+                adressHereLastTwo.push(matchingAddresses[i]);
+            } else if (
+                adress[i].toLowerCase().indexOf(' ' + arrInp[0]) != -1
+            ) {
+                adressHereLastTwo.push(matchingAddresses[i]);
+            } else if (
+                adress[i].toLowerCase().indexOf(' ' + arrInp[0]) != -1 &&
+                adress[i].toLowerCase().indexOf(arrInp[2]) != -1
+            ) {
+                adressHereLastTwo.push(matchingAddresses[i]);
+            } else {
+                adressHereLastTwo.push(matchingAddresses[i]);
+            }
+        }
+
+        let list = document.querySelectorAll(".textHere")[0];
+        list.innerHTML = "";
+
+        if (inputValue == "") {
+            list.innerHTML = "<li>Нет совпадений</li>";
+        } else {
+            adressHereLast.forEach(function (address) {
+            let listItem = document.createElement("li");
+            listItem.textContent = address;
+            listItem.addEventListener("click", function () {
+                input.value = address;
+                list.innerHTML = "";
+            });
+            list.appendChild(listItem);
+            });
+            
+            adressHereLastTwo.forEach(function (address) {
+            let listItem = document.createElement("li");
+            listItem.textContent = address;
+            listItem.addEventListener("click", function () {
+                input.value = address;
+                list.innerHTML = "";
+            });
+            list.appendChild(listItem);
+            });
+        }
+        }
+    </script>
+</html>

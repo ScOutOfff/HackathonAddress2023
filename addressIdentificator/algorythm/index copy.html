@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="keywords" content="Ремонт, ремонт смартфона, ремонт телефона, ремонт компьютера, ремонт ноутбука, ремонт холодильника, ремонт часов, ремонт телевизора">
+        <meta name="description" content="Ремонт бытовой и цифровой техники в Санкт-Петербурге">
+        <meta name="author" content="Петр Ласточкин, Peter Lastochkin, ItSystemGroup">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="">
+        <title>Срочный ремонт любой техники в Санкт-Петербурге — выгодно!</title>
+    </head>
+    <body>
+        <div style="margin: 200px auto 10px auto; width: 200px;"><textarea id="textTo"></textarea></div>
+        <div style="margin: 10px auto; width: 200px;"><input type="button" onclick="parseAdress()" value="CLICK HERE"></div>
+        <div style="margin: 10px auto; width: 500px;" class="textHere"></div>
+    </body>
+    <script src="JS/script.js"></script>
+    <script>
+        function parseAdress(){
+            let block = document.querySelector('#textTo').value;
+            let blockText = document.querySelectorAll('.textHere');
+
+            let textFormat = block.split('"');
+            let cicle = 0;
+            let strAdrss;
+
+            for (let i = 0; i < textFormat.length; i++){
+                cicle++;
+                if (cicle == 4){
+                    strAdrss += '\'' + textFormat[i] + '\', \n';
+                    cicle = 0;
+                }
+            }
+
+            console.log(strAdrss);
+        }
+    </script>
+</html>
